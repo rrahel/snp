@@ -6,8 +6,6 @@ typedef struct _node_ {
     int priority;
     struct _node_ *left;
     struct _node_ *right;
-    struct _node_ *parent;
-    int size;
     void(*node_operation)();
 } node;
 

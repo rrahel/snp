@@ -5,6 +5,21 @@
 #include <string.h>
 #include <memory.h>
 
+void display(bheap *h){
+  // printf("%d\n",&h->root_node->priority);
+  // node *temp = NULL;
+  // temp = (node*) malloc(sizeof(node));
+  // h->root_node = (node*) malloc(sizeof(node));
+  // h->root_node = temp;
+
+    // printf("%d", h->root_node->priority);
+    // if(root_node != NULL){
+    //     printf(" %d \n", root_node->priority);
+    //     display(root_node->left);
+    //     display(root_node->right);
+    // }
+}
+
 void bheap_init(bheap *h) {
   h->root_node = NULL;
 }
@@ -26,34 +41,58 @@ void bheap_insert(bheap *h, int priority, void(*node_operation)()) {
   // Make sure that the min-heap condition is retained.
   // Duplicate nodes are allowed (it should be possible to insert multiple nodes with the same priority).
 
-  node *temp = NULL;
-  temp = (node*) malloc(sizeof(node));
-  node *temp_2 = NULL;
-  temp_2 = (node*) malloc(sizeof(node));
+  // node *temp = NULL;
+  // temp = (node*) malloc(sizeof(node));
+  // node *temp_2 = NULL;
+  // temp_2 = (node*) malloc(sizeof(node));
   
-  if(!h->root_node){
-    temp->left = NULL;
-    temp->right = NULL;
-    temp->priority = priority;
-    h->root_node = (node*) malloc(sizeof(node));
-    h->root_node = temp;
-    printf("+++++root empty");
-    return;
-  }else if(priority < 3){
-    h->root_node = (node*) malloc(sizeof(node));
-    h->root_node->right = temp;
-    printf("+++++low priority");
-    return;
-  }else if(priority > 3) {
-    h->root_node = (node*) malloc(sizeof(node));
-    temp_2 = h->root_node;
-    h->root_node = temp;
-    h->root_node->right = temp_2;
-    printf("+++++high priority");
-    return;
-  } 
+  // if(!h->root_node){
+  //   temp->left = NULL;
+  //   temp->right = NULL;
+  //   temp->priority = priority;
+  //   h->root_node = (node*) malloc(sizeof(node));
+  //   h->root_node = temp;
+  //   // printf("+++++root empty");
+  //   return;
+  // }else if(priority < 3){
+  //   h->root_node = (node*) malloc(sizeof(node));
+  //   h->root_node->right = temp;
+  //   // printf("+++++low priority");
+  //   return;
+  // }else if(priority > 3) {
+  //   h->root_node = (node*) malloc(sizeof(node));
+  //   temp_2 = h->root_node;
+  //   h->root_node = temp;
+  //   h->root_node->right = temp_2;
+  //   // printf("+++++high priority");
+  //   return;
 
+    node *tmp = (node *)malloc(sizeof(node));
+    tmp->priority = priority;
+    tmp->right = NULL;
+    tmp->left = NULL;
 
+    if(h->root_node == NULL){
+        h->root_node = tmp;
+        printf("test: %d", h->root_node->priority);
+    }else{
+        if(priority > (h->root_node)->priority){
+            if((h->root_node)->left == NULL){
+                bheap_insert((h->root_node)->left, priority, NULL);
+            }else{
+                bheap_insert((h->root_node)->right, priority, NULL);
+            }
+        }
+        // }else if(priority <= (h->root_node)->priority){
+            
+        //     printf("h->root_node ---> %d \n", (h->root_node)->priority);
+        //     printf("priority ---> %d \n", tmp->priority);
+
+        //     tmp->priority = (h->root_node)->priority;
+        //     (h->root_node)->priority = priority;
+        //     bheap_insert((h->root_node), tmp->priority, NULL);
+        // }
+    }
 
 }
 
