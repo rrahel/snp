@@ -10,10 +10,9 @@ int main() {
   bheap_insert(&h, 5, NULL);
   bheap_insert(&h, 1, NULL);
   
-  // display(&h);
-  // assert(bheap_remove_min(&h) == 1);
-  // assert(bheap_remove_min(&h) == 5);
-  // bheap_destroy(&h);
+  assert(bheap_remove_min(&h) == 1);
+  assert(bheap_remove_min(&h) == 5);
+  bheap_destroy(&h);
   
   return 0;
 }
